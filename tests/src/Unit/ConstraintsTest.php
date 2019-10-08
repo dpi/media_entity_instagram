@@ -45,7 +45,7 @@ class ConstraintsTest extends UnitTestCase {
     $validator = new InstagramEmbedCodeConstraintValidator();
     $validator->initialize($execution_context);
 
-    $definition = $this->getMock(ComplexDataDefinitionInterface::class);
+    $definition = $this->createMock(ComplexDataDefinitionInterface::class);
     $definition->method('getPropertyDefinitions')->willReturn([]);
 
     $data = new StringLongItem($definition);
