@@ -36,6 +36,11 @@ class InstagramEmbedFormatterTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp() {
     parent::setUp();
     \Drupal::configFactory()
@@ -81,7 +86,7 @@ class InstagramEmbedFormatterTest extends BrowserTestBase {
     $assert->buttonExists('Save')->press();
     $assert->pageTextContains('The media type ' . $bundle->label() . ' has been updated.');
 
-    entity_get_display('media', $bundle->id(), 'default')
+    \Drupal::service('entity_display.repository')->getViewDisplay('media', $bundle->id(), 'default')
       ->setComponent('field_media_instagram', [
         'label' => 'above',
         'type' => 'instagram_embed',
